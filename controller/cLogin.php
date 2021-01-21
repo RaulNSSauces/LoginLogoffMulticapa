@@ -1,6 +1,10 @@
 <?php
-
-    define("OBLIGATORIO", 1);
+    if(isset ($_REQUEST["registrate"])){
+        $_SESSION["paginaEnCurso"] = $controlador["registro"];
+        header("Location: index.php");
+        exit;
+    }else{
+        define("OBLIGATORIO", 1);
     
     $entradaOk=true;
     
@@ -29,7 +33,7 @@
         
         if(isset($oUsuario)){
             $_SESSION["usuarioDAW203LoginLogoffMulticapa"]=$oUsuario;
-            //usuarioPDO::actualizarUltimaConexion($oUsuario->T01_CodUsuario);
+            $_SESSION["paginaEnCurso"] = $controlador["inicio"];
             header('Location: index.php');
             exit;
         }
@@ -37,4 +41,5 @@
     
     $vista = $vistas['login'];
     require_once $vistas['layout'];
+    }
 ?>
